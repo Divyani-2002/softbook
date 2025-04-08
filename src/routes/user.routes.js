@@ -1,22 +1,16 @@
 
 import express from "express";
-
+import { createuser, deleteuser, getallusers, getuser, updateuser, logoutuser }
+    from "../controllers/user.controllers.js"
+import { upload } from '../middlewares/multer.middleware.js'
 const router = express.Router();
 
-router.get("/create", (req, res) => {
-// business logic of creating a user account
-    
-})
-router.get("/getall", (req, res) => {
-// business logic of creating a user account
-    
-})
-router.get("/get/:id", (req, res) => {
-    
-})
-router.get("/delete/:id", (req, res) => {
-    
-})
-router.get("/update/:id", (req, res) => {
-    
-})
+router.post("/create", upload.single('avatar'), createuser)
+router.get("/getall", getallusers)
+router.get("/get/:id", getuser)
+router.delete("/delete/:id", deleteuser)
+router.put("/update/:id", updateuser)
+router.put("/logout/", logoutuser)
+
+export default router;
+
